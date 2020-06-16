@@ -13,7 +13,6 @@ void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size <= 1)
 		return;
-
 	quick(array, 0, size - 1, size);
 }
 /**
@@ -56,7 +55,7 @@ void quick(int *arr, int low, int high, size_t size)
 int partition(int *arr, int low, int high, size_t size)
 {
 	int i = low - 1;
-	int j;
+	int j, sw;
 
 	for (j = low; j < high; j++)
 	{
@@ -65,7 +64,9 @@ int partition(int *arr, int low, int high, size_t size)
 			i++;
 			if (i != j)
 			{
-				swap(&arr[i], &arr[j]);
+				sw = arr[i],
+				arr[i] = arr[j];
+				arr[j] = sw;
 				print_array(arr, size);
 			}
 		}
