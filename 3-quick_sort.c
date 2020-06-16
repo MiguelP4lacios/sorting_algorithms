@@ -1,6 +1,7 @@
 #include "sort.h"
+void swap(int *first, int *second);
 void quick(int *arr, int low, int high, size_t size);
-int partition(int *arr, int low, int high, size_t size);
+int partition(int arr[], int low, int high, size_t size);
 
 /**
  * quick_sort - sorting algorithm
@@ -10,7 +11,7 @@ int partition(int *arr, int low, int high, size_t size);
 */
 void quick_sort(int *array, size_t size)
 {
-	if (array == NULL || size < 1)
+	if (array == NULL || size <= 1)
 		return;
 	quick(array, 0, size - 1, size);
 }
@@ -30,9 +31,11 @@ void quick(int *arr, int low, int high, size_t size)
 	if (low < high)
 	{
 		pi = partition(arr, low, high, size);
+
 		quick(arr, low, pi - 1, size);
 		quick(arr, pi + 1, high, size);
 	}
+
 }
 
 /**
@@ -52,7 +55,7 @@ void quick(int *arr, int low, int high, size_t size)
 int partition(int *arr, int low, int high, size_t size)
 {
 	int i = low - 1;
-	int j, sw;
+	int j;
 
 	for (j = low; j < high; j++)
 	{
@@ -61,19 +64,27 @@ int partition(int *arr, int low, int high, size_t size)
 			i++;
 			if (i != j)
 			{
-				sw = arr[j],
-				arr[j] = arr[i];
-				arr[i] = sw;
+				swap(&arr[i], &arr[j]);
 				print_array(arr, size);
 			}
 		}
 	}
 	if (i + 1 != high)
 	{
-		sw = arr[i + 1],
-		arr[i + 1] = arr[high];
-		arr[high] = sw;
+		swap(&arr[i + 1], &arr[high]);
 		print_array(arr, size);
 	}
 	return (i + 1);
+}
+/**
+ *swap - Exchange values
+ * @first: 1th element
+ * @second: 2th element
+ * Return: nothing
+*/
+void swap(int *first, int *second)
+{
+	int sw = *first;
+	*first = *second;
+	*second = sw;
 }
