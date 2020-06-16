@@ -64,29 +64,19 @@ int partition(int *arr, int low, int high, size_t size)
 			i++;
 			if (i != j)
 			{
-				sw = arr[i],
-				arr[i] = arr[j];
-				arr[j] = sw;
+				sw = arr[j],
+				arr[j] = arr[i];
+				arr[i] = sw;
 				print_array(arr, size);
 			}
 		}
 	}
 	if (i + 1 != high)
 	{
-		swap(&arr[i + 1], &arr[high]);
+		sw = arr[i + 1],
+		arr[i + 1] = arr[high];
+		arr[high] = sw;
 		print_array(arr, size);
 	}
 	return (i + 1);
-}
-/**
- *swap - Exchange values
- * @first: 1th element
- * @second: 2th element
- * Return: nothing
-*/
-void swap(int *first, int *second)
-{
-	int sw = *first;
-	*first = *second;
-	*second = sw;
 }
