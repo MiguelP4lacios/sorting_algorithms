@@ -55,13 +55,12 @@ void quick(int *arr, int low, int high, size_t size)
 */
 int partition(int *arr, int low, int high, size_t size)
 {
-	int pivot = arr[high];
 	int i = low - 1;
 	int j;
 
-	for (j = low; j <= high - 1; j++)
+	for (j = low; j < high; j++)
 	{
-		if (arr[j] < pivot)
+		if (arr[j] <= arr[high])
 		{
 			i++;
 			if (i != j)
